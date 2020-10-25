@@ -1,33 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Skeleton, Tooltip } from "antd";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import PropTypes from "prop-types";
+import { DeleteOutlined } from "@ant-design/icons";
 import { getRandomImage } from "../../requsts";
 import {
-  StyledCar,
+  StyledCard,
   StyledDate,
   StyledTitle,
 } from "./SmallArticleCard.styles.js";
+import AppContext from "../../context/AppContext.js";
 
 const { Meta } = Card;
 
 const SmallArticleCard = ({ id, publicationDate, title, smallDescription }) => {
   const [image, setImage] = useState("");
   const history = useHistory();
+  const { admin, deleteArticle } = useContext(AppContext);
 
   useEffect(() => {
     getRandomImage().then(setImage);
   }, []);
 
+  const onDelete = (e) => {
+    e.stopPropagation();
+    deleteArticle(id);
+  };
+
   return (
-    <StyledCar
+    <StyledCard
       hoverable
       size="small"
       cover={
         <>{image ? <img alt="example" src={image} /> : <Skeleton.Image />}</>
       }
       onClick={() => history.push({ pathname: id, state: { image } })}
+      actions={admin && [<DeleteOutlined key="delete" onClick={onDelete} />]}
     >
       <Meta
         title={
@@ -40,7 +49,7 @@ const SmallArticleCard = ({ id, publicationDate, title, smallDescription }) => {
         }
         description={smallDescription}
       />
-    </StyledCar>
+    </StyledCard>
   );
 };
 

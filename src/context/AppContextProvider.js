@@ -15,13 +15,17 @@ const AppContextProvider = ({ children }) => {
     if (role === "admin") setAdmin(true);
   }, []);
 
-  const getArticleById = (currentId) => {
-    return articleList.find(({ id }) => currentId === id);
+  const getArticleById = (articleId) => {
+    return articleList.find(({ id }) => articleId === id);
+  };
+
+  const deleteArticle = (articleId) => {
+    setArticleList(articleList.filter(({ id }) => id !== articleId));
   };
 
   return (
     <AppContext.Provider
-      value={{ articleList, getArticleById, setAdmin, admin }}
+      value={{ articleList, getArticleById, setAdmin, admin, deleteArticle }}
     >
       {children}
     </AppContext.Provider>

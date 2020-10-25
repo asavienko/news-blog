@@ -15,12 +15,18 @@ export const StyledDate = styled.div`
   margin: 10px 10px 0;
 `;
 
-export const StyledCar = styled(Card)`
+export const StyledCard = styled(Card)`
   height: 100%;
   margin: 0 20px;
+  display: flex;
+  flex-direction: column;
   img {
     border-radius: 2px 2px 0 0;
     height: 350px;
     object-fit: cover;
+  }
+  .ant-card-actions {
+    margin-top: auto;
+    width: 100%;
   }
 `;
