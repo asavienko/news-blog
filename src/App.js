@@ -4,15 +4,22 @@ import "antd/dist/antd.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AppContextProvider from "./context/AppContextProvider.js";
 import routs from "./routs/routs.js";
+import { StyledContent, StyledLayout } from "./App.styles.js";
+import Header from "./components/Header";
 
 function App() {
   return (
     <AppContextProvider>
       <Router>
         <div className="App">
-          {routs.map((component, index) => (
-            <Route {...component} key={index} />
-          ))}
+          <StyledLayout>
+            <Header />
+            <StyledContent>
+              {routs.map((component, index) => (
+                <Route {...component} key={index} />
+              ))}
+            </StyledContent>
+          </StyledLayout>
         </div>
       </Router>
     </AppContextProvider>

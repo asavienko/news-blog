@@ -1,9 +1,9 @@
-import SmallArticleCard from "../components/SmallArticleCard";
 import ArticleList from "../components/ArticleList";
+import Article from "../components/Article";
 
 const routs = [
   { component: ArticleList, path: "/", exact: true },
-  { component: SmallArticleCard, path: "/:id", exact: true },
+  { component: Article, path: "/:id", exact: true },
 ];
 
 export default routs;

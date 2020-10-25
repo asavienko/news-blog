@@ -10,8 +10,12 @@ const AppContextProvider = ({ children }) => {
     setArticleList(Object.values(articlesMockData));
   }, []);
 
+  const getArticleById = (currentId) => {
+    return articleList.find(({ id }) => currentId === id);
+  };
+
   return (
-    <AppContext.Provider value={{ articleList }}>
+    <AppContext.Provider value={{ articleList, getArticleById }}>
       {children}
     </AppContext.Provider>
   );
