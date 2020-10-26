@@ -6,6 +6,7 @@ import AppContextProvider from "./context/AppContextProvider.js";
 import routs from "./routs/routs.js";
 import { StyledContent, StyledLayout } from "./App.styles.js";
 import Header from "./components/Header";
+import BackButton from "./components/BackButton";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div className="App">
           <StyledLayout>
             <Header />
+            <BackButton />
             <StyledContent>
               {routs.map((component, index) => (
                 <Route {...component} key={index} />
