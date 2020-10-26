@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import * as Cookies from "js-cookie";
+import moment from "moment";
 import AppContext from "./AppContext.js";
 import articlesMockData from "../mockData/articles.json";
 
@@ -9,7 +10,10 @@ const AppContextProvider = ({ children }) => {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    setArticleList(Object.values(articlesMockData));
+    const sortedArr = Object.values(articlesMockData).sort(
+      (a, b) => moment(b.publicationDate) - moment(a.publicationDate)
+    );
+    setArticleList(sortedArr);
     const role = Cookies.get("role");
 
     if (role === "admin") setAdmin(true);
